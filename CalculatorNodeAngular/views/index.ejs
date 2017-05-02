@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head >
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+  </head>
+  <body  ng-app="app" ng-controller="calculatorController">
+    <form class="form-horizontal" >
+	<fieldset>
+
+    <div class="row">
+    <div class="col-sm-9">
+	<!-- Form Name -->
+	<legend class="text-left">Calculator Application</legend>
+	</div><br><br><br>
+	
+	<div class="row">
+	<div class="col-md-4">
+	<!-- Text input-->
+ 	 <label class="control-label" for="operand1">Number 1:</label>
+ 	 </div>
+ 	 <div class="col-md-4">
+ 	 <div class="controls">
+    <input id="operand1" ng-model="operand1" name="operand1" type="number" placeholder="Number" class="input-large" required="Please Enter Number">
+    <p class="help-block">Enter Number</p>
+		</div>
+	  </div>
+	 </div>
+	
+
+	<div class="row">
+	<div class="col-md-4">
+	<!-- Text input-->
+  	<label class="control-label" for="operand2">Number 2:</label>
+  	 </div>
+ 	<div class="col-md-4">
+  	<div class="controls">
+    <input id="operand2" ng-model="operand2" name="operand2" type="number" placeholder="Number" class="input-large" required="Please Enter Number">
+    <p class="help-block">Enter Number</p>
+  		</div>
+		</div>
+	</div>
+	</div>
+	
+ 	<!-- Button (Double) -->
+ 	<div class="row">
+ 	<div class="row">
+	<div class="col-md-4">
+  	 <label class="control-label" for="addition"></label>
+  	 <div class="controls">
+     <button id="addition" name="addition" class="btn btn-primary" ng-click="addition()">Addition</button>
+     
+     <button id="subtraction" name="subtraction" class="btn btn-primary" ng-click="subtraction()">Subtraction</button>
+  	 
+	</div>
+	</div>
+
+	</div>
+	
+		
+	
+	<!-- Button (Double) -->
+	<div class="row">
+	
+	<div class="col-md-4">
+  	<label class="control-label" for="division"></label>
+  	<div class="controls">
+    <button id="division" name="division" class="btn btn-primary" ng-click="division()">Division</button>
+    <button id="multiplication" name="multiplication" class="btn btn-primary" ng-click="multiplication()">Multiplication</button>
+  	</div>
+	</div>
+	<div class="col-md-8">
+	<p class="text-primary">
+		<span  ng-bind="result"> </span></p>
+	</div>
+	<div>
+	
+	</div>
+	
+
+
+	</fieldset>
+	</form>
+    <script type="text/javascript" >
+     var app = angular.module('app', []);
+		    app.controller("calculatorController", function($scope,$http)
+	     	{
+	     		$scope.addition = function(){
+	           	    $http({
+	           	    method: 'POST',
+		            url: '/addition', 
+		            data: { "operand1": $scope.operand1, "operand2": $scope.operand2 }
+		            }).success(function(response){
+		         			$scope.result = "Result : "+JSON.stringify(response.addition);	            
+		            	 }).error(function(error){
+		          			  alert("error");
+		        			});
+	            };
+	            $scope.subtraction = function(){
+	           	    $http({
+	           	    method: 'POST',
+		            url: '/subtraction', 
+		            data: { "operand1": $scope.operand1, "operand2": $scope.operand2 }
+		            }).success(function(response){
+		         			$scope.result = "Result : "+JSON.stringify(response.subtraction);	            
+		            	 }).error(function(error){
+		          			  alert("error");
+		        			});
+	            };
+	            $scope.division = function(){
+	           	    $http({
+	           	    method: 'POST',
+		            url: '/division', 
+		            data: { "operand1": $scope.operand1, "operand2": $scope.operand2 }
+		            }).success(function(response){
+		         			$scope.result = "Result : "+JSON.stringify(response.division);	            
+		            	 }).error(function(error){
+		          			  alert("error");
+		        			});
+	            };
+	            $scope.multiplication = function(){
+	           	    $http({
+	           	    method: 'POST',
+		            url: '/multiplication', 
+		            data: { "operand1": $scope.operand1, "operand2": $scope.operand2 }
+		            }).success(function(response){
+		         			$scope.result = "Result : "+JSON.stringify(response.multiplication);	            
+		            	 }).error(function(error){
+		          			  alert("error");
+		        			});
+	            };
+	            
+	         });
+    
+    </script>
+  </body>
+</html>
