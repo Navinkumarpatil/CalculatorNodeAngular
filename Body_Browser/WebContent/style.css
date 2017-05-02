@@ -1,0 +1,24 @@
+html, body {
+    display: block;
+}
+.the_logo {
+    height: 6.5%;
+    width: 6.5%;
+    float: left;
+}
+.nav nav-pills li {
+    display: inline;
+}
+.peopleCarouselImg img {
+  width: auto;
+  height: 500px;
+  max-height: 500px;
+}
+footer {
+    background-color: pink;
+    color: black;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    
+}
